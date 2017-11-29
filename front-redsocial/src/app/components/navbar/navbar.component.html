@@ -1,0 +1,42 @@
+<div class="encabezado" id="encabezado">
+  <div class="container">
+    <a routerLink="home" class="logo">
+      <img src="../../assets/img/miwak.svg" width="50"alt="Logo del sitio">
+    </a>
+    <input (click)='inputSearch = true' type="text" id="myInput" name="amigoText" placeholder="Busca amigos..." [(ngModel)]="amigoText" (keyup)="getPossibleFriends()" #vamigoText="ngModel">
+
+    <button type="button" class="hidden-md-up boton_menu" data-toggle="collapse" data-target="#menu_principal" aria-expanded="false">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </button>
+
+    <nav id="menu_principal" class="collapse">
+
+      <ul>
+
+        <li data-toggle="collapse" data-target="#menu_principal" [routerLinkActive]="['active']"><a routerLink="/crear-album">Albums</a></li>
+        <!-- <li data-toggle="collapse" data-target="#menu_principal" [routerLinkActive]="['active']"><a routerLink="/amigos">Buscar Amigos</a></li> -->
+        <li data-toggle="collapse" data-target="#menu_principal" [routerLinkActive]="['active']"><a routerLink="/update-user">Perfil</a></li>
+        <li data-toggle="collapse" data-target="#menu_principal"><a routerLink="/" (click)="logout()">Salir</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+<div id="myUL">
+  <ul *ngFor="let amigoPosible of amigosPosibles" [style.visibility]="!inputSearch ? 'visible' : 'hidden'">
+    <li id='list-ul' class="list-group-item" class=" d-flex justify-content-around align-items-center amigos-list py-1">
+      <div id='list-ul' class="col-lg-3 col-3">
+        <img id='list-ul' *ngIf="amigoPosible.image != 'null'" src="{{url + 'get-image-user/' +amigoPosible.image}}" class="img-thumbnail img-responsive" width='60' alt="no image">
+
+        <img id='list-ul' *ngIf="amigoPosible.image == 'null'" src="http://wfarm1.dataknet.com/static/resources/icons/set104/6ff873a9.png" class="img-thumbnail img-responsive" width='60' alt="no image">
+      </div>
+      <div id='list-ul' class="col-lg-7 col-5">
+        <p id='list-ul' class="ml-2">{{amigoPosible.name}} {{amigoPosible.surname}}</p>
+      </div>
+      <div id='list-ul' class="col-lg-2 col-4">
+        <button id='list-ul' *ngIf="!amigoPosible.isFriend && amigoPosible._id != identity._id" type="button" class="btn btn-outline-primary text-right btn-sm" (click)="postfollow(amigoPosible)">Seguir</button>
+        <button id='list-ul' [ngClass]="amigoPosible.class" *ngIf=" amigoPosible.isFriend && amigoPosible._id != identity._id" (mouseover)="changeStyle($event, amigoPosible)" (mouseout)="changeStyle($event, amigoPosible)" type="button" class="btn btn-primary text-right botton-seguir btn-sm"
+          (click)="deleteFollow(amigoPosible)">{{amigoPosible.textClass}}</button>
+      </div>
+    </li>
+  </ul>
+</div>

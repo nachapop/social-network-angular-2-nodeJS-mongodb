@@ -1,0 +1,71 @@
+<section class="container mt-3">
+  <div class="row">
+    <div class="barra-izda col-md-5 col-lg-4">
+      <div class="contenerdor-perfil">
+        <div class="elto-1">
+
+        </div>
+        <div class="elto-2">
+          <div class="siguiendo">
+            <a>
+              <p>Siguiendo</p>
+              <p class="text-center">{{_fs.follows.length}}</p>
+
+            </a>
+          </div>
+          <div class="siguiendo">
+            <a (click)="emptyNewFollowList()">
+              <span *ngIf="newFollowers.length>0" class="badge badge-pill badge-primary">{{newFollowers.length}} new</span>
+
+              <p>Seguidores</p>
+              <p class="text-center">{{followers.length}}</p>
+
+            </a>
+          </div>
+
+        </div>
+        <div class="perfil">
+          <img *ngIf="user.image != 'null'" class="img-circle img-fluid" src="{{url + 'get-image-user/' + user.image}}" width='60' alt="no image">
+          <img *ngIf="user.image == 'null'" class="img-circle img-fluid" src="http://wfarm1.dataknet.com/static/resources/icons/set104/6ff873a9.png" width='60'>
+
+          <h6>{{user.name}}</h6>
+        </div>
+      </div>
+      <div class="row">
+        <!-- <div class="col-md-3 col-4 my-2 friend-list py-2" *ngFor="let follow of follows">
+          <div class="container-fiends">
+            <img src="{{url + 'get-image-user/' + follow.friend.image}}" class='img-fluid' alt="no image">
+            <small>{{follow.friend.name}}</small>
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="col-md-7 col-lg-8">
+      <div *ngIf="_as.albums.length == 0" class="alert alert-warning">
+        <strong>Atención!</strong> Tu portal está vacío. Busca gente a la que seguir y enterate de lo que publica
+      </div>
+      <div class="card mb-3 contenedor-img" *ngFor="let imagen of _is.imagesAlbum; let i = index">
+        <div class="card-header">
+          <div class="d-flex align-items-start">
+            <img class="image-owner-foto" *ngIf="imagen.album.user.image != 'null'" src="{{url + 'get-image-user/'+ imagen.album.user.image}}" alt="">
+
+            <img *ngIf="imagen.album.user.image == 'null'" class="img-circle img-fluid image-owner-foto" src="http://wfarm1.dataknet.com/static/resources/icons/set104/6ff873a9.png">
+            <p class="ml-2">{{imagen.album.user.name}} {{imagen.album.user.surname}}</p>
+          </div>
+          <h6 class="text-center">{{imagen.title}}</h6>
+        </div>
+        <div class="card-body d-flex flex-column">
+          <img class="imagenes-album m-auto pt-1" src="{{url + 'get-image/' + imagen.picture}}">
+          <div class="comment container card-footer">
+            <a (click)="putLike()">
+              <div class="me-gusta d-flex align-items-center">
+                <i class="fa fa-thumbs-up " aria-hidden="true"></i>
+                <p class="ml-1">Me gusta</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+<div class="container my-3">
+
+  <input type="text" id="myInput" name="amigoText" placeholder="Busca amigos..." [(ngModel)]="amigoText" (keyup)="getPossibleFriends()" #vamigoText="ngModel">
+
+  <ul id="myUL" *ngFor="let amigoPosible of amigosPosibles">
+    <li class="list-group-item" class=" d-flex justify-content-around align-items-center amigos-list my-1 py-1">
+
+      <img src="{{url + 'get-image-user/' +amigoPosible.image}}" class="img-thumbnail img-responsive" width='60' alt="no image">
+
+      <p class="ml-2">{{amigoPosible.name}}</p>
+
+      <button *ngIf="!amigoPosible.isFriend && amigosPosibles._id != identity._id" type="button" class="btn btn-outline-primary text-right" (click)="postfollow(amigoPosible)">Seguir</button>
+      <button *ngIf="amigoPosible.isFriend && amigosPosibles._id != identity._id" type="button" class="btn btn-primary text-right" (click)="deleteFollow(amigoPosible)">Siguiendo</button>
+
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,105 @@
+.friend-list {
+  padding: 0;
+}
+
+.perfil img {
+  border-radius: 50%;
+}
+
+.container-fiends small {
+  color: white;
+  bottom: 0;
+}
+
+.contenerdor-perfil {
+  position: fixed;
+  width: 270px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.contenerdor-perfil .perfil {
+  position: fixed;
+  margin-top: 60px;
+  margin-left: 15px;
+}
+
+.elto-1 {
+  background-color: rgba(178,212,101, 1);
+  width: 100%;
+  height: 50%;
+}
+
+.elto-2 {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding-right:: 2px;
+}
+
+.elto-2 p {
+  font-size: 12px;
+  margin: 0 3px;
+  color: #111;
+}
+
+.elto-2 .text-center,
+.indicador-seguidores p {
+  font-size: 16px;
+  color: rgba(178,212,101, 1);
+}
+
+.elto-2 a {
+  text-decoration: none;
+}
+
+span {
+  position: relative;
+  font-size: 9px !important;
+}
+
+.elto-2 a:hover {
+  p {
+    color: rgba(178,212,101, 1);
+  }
+  cursor: pointer;
+}
+
+.image-owner-foto {
+  width: 40px;
+  border-radius: 50%;
+}
+
+.imagenes-album {
+  top: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+  height: 200px;
+}
+
+.contenedor-img {
+  position: relative;
+  overflow: hidden;
+  width: 70%;
+  height: 350px;
+}
+
+.card-body i,
+.card-body p {
+  color: grey;
+  font-size: 15px;
+  margin: 0;
+}
+
+,
+.me-gusta i:hover,
+.me-gusta p:hover {
+  cursor: pointer;
+  color: rgba(178,212,101, 1);
+}

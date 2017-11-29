@@ -1,0 +1,33 @@
+<section>
+
+  <form class="my-3 container" #fregister="ngForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="container">
+      <div class="form-group row">
+
+        <div class="col-6">
+          <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="user.name" required #vnombre="ngModel" placeholder="Nombre">
+        </div>
+
+      </div>
+      <div class="form-group row">
+
+        <div class="col-6">
+          <input type="text" class="form-control" id="surname" name="surname" [(ngModel)]="user.surname" required #vapellido="ngModel" placeholder="Apellidos">
+        </div>
+
+      </div>
+
+      <div class="image_for_edit" *ngIf="user.image && user.image != 'null'">
+        <img width="100" src="{{url + 'get-image-user/' +identity.image}}" alt="no carga">
+      </div>
+      <p>
+        <label for="">Sube tu foto</label><br>
+        <input type="file" placeholder="Subir imagen..." (change)="fileChangeEvent($event)">
+      </p>
+
+      <div lass="form-group row">
+        <button class="col-offset-4 col-4 btn btn-primary btn-block" [disabled]="!fregister.valid" type="submit">Actualizar</button>
+      </div>
+    </div>
+  </form>
+</section>

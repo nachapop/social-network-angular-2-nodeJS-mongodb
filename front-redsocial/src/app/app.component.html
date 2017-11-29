@@ -1,0 +1,9 @@
+<div *ngIf="!identity">
+  <app-entrada (identit)="identit()"></app-entrada>
+</div>
+<div *ngIf="identity">
+  <app-navbar (identit)="identit()" (clickComponent)="hiddenSearch()"></app-navbar>
+  <div class="container cuerpo">
+    <router-outlet></router-outlet>
+  </div>
+</div>

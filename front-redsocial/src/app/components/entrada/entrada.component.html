@@ -1,0 +1,105 @@
+<div class="encabezado" id="encabezado">
+  <div class="container d-flex justify-content-between">
+    <a routerLink="home" class="logo">
+      <img src="../../assets/img/miwak.svg" width="50"alt="Logo del sitio">
+    </a>
+
+    <button type="button" class="hidden-md-up boton_menu" data-toggle="collapse" data-target="#menu_principal" aria-expanded="false">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+      </button>
+
+    <form #flogin="ngForm" (ngSubmit)="logueo()" novalidate>
+      <div class="loguearse d-flex">
+        <div class="correo ml-3 ">
+          <input type="email" class="form-control" id="correo" name="correo" placeholder="e-mail" [(ngModel)]="usuarioLogueo.email" required #vemail="ngModel">
+
+        </div>
+        <div class="contrasena ml-3">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password" [(ngModel)]="usuarioLogueo.password" required #vpassword="ngModel">
+
+        </div>
+
+        <button class="btn btn-outline-primary ml-3 btn-sm" [disabled]="!flogin.valid" type="submit">Entrar</button>
+      </div>
+
+
+
+    </form>
+  </div>
+</div>
+
+
+
+<section class="py-5 grad animated fadeIn">
+  <div class="container">
+    <div class="row ">
+      <div class="col-md-6 pr-5 hidden-sm-down">
+
+        <p>Miwak te ayuda a comunicarte y compartir imagenes con las personas que forman parte de tu vida</p>
+        <img src="../../assets/img/social_netword.png" class="img-fluid" alt="">
+      </div>
+      <div class="col-md-6  pl-5">
+
+        <h2>Registrete</h2>
+        <h6>Es gratis y lo será siempre</h6>
+        <form class="my-3" #fregister="ngForm" (ngSubmit)="registro()" novalidate>
+
+          <div class="form-group row">
+
+            <div class="col-8">
+              <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="usuario.name" required #vnombre="ngModel" placeholder="Nombre">
+            </div>
+            <div class="col-4">
+              <small *ngIf="vnombre.pristine" class="form-text  text-danger">Nombre obligatorio</small>
+            </div>
+          </div>
+          <div class="form-group row">
+
+            <div class="col-8">
+              <input type="text" class="form-control" id="surname" name="surname" [(ngModel)]="usuario.surname" required #vapellido="ngModel" placeholder="Apellidos">
+            </div>
+            <div class="col-4">
+              <small *ngIf="vapellido.pristine" class="form-text text-muted text-danger">Apellido obligatorio</small>
+
+            </div>
+          </div>
+
+          <div class="form-group row">
+
+            <div class="col-8">
+              <input type="email" [pattern]="EMAIL_REGEXP" class="form-control" id="email" name="email" [(ngModel)]="usuario.email" required #vemail="ngModel" placeholder="Email">
+            </div>
+            <div class="col-4">
+
+              <small *ngIf="!vemail.valid || vemail.pristine" class="form-text text-muted text-danger">Email obligatorio/invalido</small>
+            </div>
+          </div>
+
+          <div class="form-group row">
+
+            <div class="col-8">
+              <input type="password" class="form-control" id="password" name="password" [(ngModel)]="usuario.password" required #vpassword="ngModel" placeholder="Password">
+            </div>
+            <div class="col-4">
+              <small *ngIf="!vpassword.valid || vpassword.pristine" class="form-text text-muted text-danger">Email obligatorio</small>
+            </div>
+          </div>
+          <!-- <div class="g-recaptcha" data-sitekey="6Lco2jkUAAAAANncXv83RVrM9vsq9LiBfSxE-G55"></div><br> -->
+          <!-- <recaptcha (resolved)="resolved($event)" siteKey="6Lco2jkUAAAAANncXv83RVrM9vsq9LiBfSxE-G55"></recaptcha> -->
+          <div lass="form-group row">
+            <button class="col-offset-4 col-4 btn btn-primary btn-block" [disabled]="!fregister.valid" type="submit">Registrar</button>
+          </div>
+
+        </form>
+        <div *ngIf="registroRepuesta && user" class="alert alert-success">
+          <strong>Exito!</strong> Te has registrado correctamente
+        </div>
+        <div *ngIf="registroRepuesta && !user" class="alert alert-danger">
+          <strong>Error!</strong> en el registro o email ya registrado
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>

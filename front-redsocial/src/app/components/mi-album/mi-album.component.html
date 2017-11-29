@@ -1,0 +1,43 @@
+<div class="container my-3">
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Mi Colección</h2>
+      <div class="d-flex flex-wrap m-2">
+
+        <div class=" contenedor-img " *ngFor="let album of albumCollection; let i = index" (click)="verAlbum(album)">
+
+          <img class="imagenes-album m-auto" src="{{url + 'get-image/' + images[i][0].picture}}">
+          <h6>{{album.title}}</h6>
+
+        </div>
+
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h2>Añadir Album</h2>
+      <div class="container">
+        <form #flogin="ngForm" (ngSubmit)="crearAlbum()" novalidate>
+          <div>
+            <div class="titulo-album  form-group row">
+              <input type="text" class="form-control" id="title" name="title" placeholder="Título" [(ngModel)]="albumNuevo.title" required #vtitle="ngModel">
+            </div>
+            <div class="descripcion-album form-group row">
+              <textarea class="form-control" id="description" name="description" placeholder="Descripción" [(ngModel)]="albumNuevo.description" required #vdescription="ngModel" id="exampleTextarea" rows="3"></textarea>
+
+
+            </div>
+
+            <button class="btn btn-outline-primary form-group row" type="submit">Nuevo album</button>
+          </div>
+
+
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- <gallery>
+</gallery> -->
+<!-- <ng2-image-gallery [images]="myImages"></ng2-image-gallery> -->

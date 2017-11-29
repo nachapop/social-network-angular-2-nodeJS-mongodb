@@ -1,0 +1,38 @@
+.imagenes-album {
+  top: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+  height: 180px;
+}
+
+.modal.and.carousel {
+  position: fixed; // Needed because the carousel overrides the position property
+}
+
+.imagenes-album-carousel {
+  width: auto;
+  height: auto;
+  max-height: 500px;
+}
+
+.modal {}
+
+.modal-content,
+.modal-dialog {
+  /* 80% of window height */
+  height: 95%;
+}
+
+.modal-dialog {}
+
+.modal-content {
+  background-color: #ddd;
+}
+
+.modal-body {
+  /* 100% = dialog height, 120px = header + footer */
+  max-height: calc(100% - 60px);
+  overflow-y: scroll;
+}
