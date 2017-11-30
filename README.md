@@ -2,6 +2,8 @@
 
 Social network developed in angular 2, nodejs and mongodb.
 
+https://www.youtube.com/watch?v=1l2oJ0UdzYk
+
 to run this project you need:
 
 - <a href="https://www.mongodb.com/download-center?jmp=nav#atlas" target="_blank">MongoDb </a>
