@@ -118,10 +118,8 @@ export class NavbarComponent implements OnInit {
   albumNum: number = 0;
 
   getAlbumFollow() {
-    console.log(this._fs.follows[this.albumNum].friend._id)
     this._as.getAlbums(this._fs.follows[this.albumNum].friend._id, this.token).subscribe(
       response => {
-        console.log(response)
         this._as.albums = response.albums
 
         if (this._as.albums.length > 0)
@@ -133,7 +131,6 @@ export class NavbarComponent implements OnInit {
   }
 
   getImagesAlbum(album) {
-    console.log(album)
     this._is.getImages(this.token, album._id).subscribe(
       response => {
         this._is.imagesAlbum = this._is.imagesAlbum.concat(response.images)

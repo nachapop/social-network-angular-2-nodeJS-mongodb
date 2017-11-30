@@ -10,11 +10,12 @@ to run this project you need:
 
 - <a href="https://angular.io/" target="_blank">Angular 2+</a>
 
-There are two folder one developed in angular 5 and the other is de server.
+There are two folder one developed in angular 5 and the other is the server.
 
 1) First of all you should open Mongod (mongod is the primary daemon process for the MongoDB and must be running all the time in the console).
 
-2) The second step is upload the server to the port 3000. You should by in the folder res-usuario and in the console you must write <b>npm start</b>.
+2) Open mongo in a console and create a table called 'AEPI_Miwak', write <b>use AEPI_Miwak</b>
+3) The second step is upload the server to the port 3000. You should by in the folder res-usuario and in the console you must write <b>npm start</b>.
 
-3) While the server is uploading you can open the angular 5 project folder in the console and run <b>npm install</b>.
-4) after that, run <b>ng serve</b> an  the project will be running in the http://localhost:4200
+4) While the server is uploading you can open the angular 5 project folder in the console (called front-redsocial) and run <b>npm install</b>.
+5) after that, run <b>ng serve</b> an  the project will be running in the http://localhost:4200

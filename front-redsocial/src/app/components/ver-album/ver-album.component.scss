@@ -7,6 +7,16 @@
   height: 180px;
 }
 
+.card img {
+  width: 100%;
+  height: auto;
+}
+@media (min-width: 600px) {
+  .card-columns {
+    column-count: 5;
+  }
+}
+
 .modal.and.carousel {
   position: fixed; // Needed because the carousel overrides the position property
 }

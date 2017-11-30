@@ -3,10 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-
 //libraries
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
-//import { Angular2ImageGalleryModule } from 'angular2-image-gallery';
+//mport { Angular2ImageGalleryModule } from 'angular2-image-gallery';
 //Directives
 import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
 
@@ -26,10 +25,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { CargarImagenesComponent } from './components/cargar-imagenes/cargar-imagenes.component';
 import { BuscarAmigosComponent } from './components/buscar-amigos/buscar-amigos.component';
-
-
 import { MiAlbumComponent } from './components/mi-album/mi-album.component';
-
 import { VerAlbumComponent } from './components/ver-album/ver-album.component'
 
 @NgModule({
@@ -50,7 +46,7 @@ import { VerAlbumComponent } from './components/ver-album/ver-album.component'
     FormsModule,
     HttpModule,
     Angular2FontawesomeModule,
-    //  Angular2ImageGalleryModule,
+    //Angular2ImageGalleryModule,
     APP_ROUTING
   ],
   providers: [UsuarioService, FriendService, AlbumService, ImageService, WebSocketService],
