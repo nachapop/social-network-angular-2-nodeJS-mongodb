@@ -115,32 +115,37 @@ export class NavbarComponent implements OnInit {
         console.log('err')
       })
   }
-  albumNum: number = 0;
+  followNum: number = 0;
 
   getAlbumFollow() {
-    this._as.getAlbums(this._fs.follows[this.albumNum].friend._id, this.token).subscribe(
+    this._as.getAlbums(this._fs.follows[this.followNum].friend._id, this.token).subscribe(
       response => {
-        this._as.albums = response.albums
+        this._as.albums = this._as.albums.concat(response.albums)
+        this.followNum++;
+        if (this.followNum < this._fs.follows.length) {
+          this.getAlbumFollow()
+        } else {
+          this.getImagesAlbum();
+        }
 
-        if (this._as.albums.length > 0)
-          this.getImagesAlbum(this._as.albums[this.albumNum])
-        //      console.log(this.)
       }, error => {
 
       })
   }
-
-  getImagesAlbum(album) {
-    this._is.getImages(this.token, album._id).subscribe(
+  albumNum: number = 0;
+  getImagesAlbum() {
+    this._is.getImages(this.token, this._as.albums[this.albumNum]._id).subscribe(
       response => {
         this._is.imagesAlbum = this._is.imagesAlbum.concat(response.images)
         //    this.imagesAlbum.sort(function(a, b) { return (a.last_nom > b.last_nom) ? 1 : ((b.last_nom > a.last_nom) ? -1 : 0); });
 
         this.albumNum++
+
         if (this.albumNum < this._as.albums.length) {
-          this.getImagesAlbum(this._as.albums[this.albumNum])
+          this.getImagesAlbum()
         } else {
           this.ordenarImagenesPorFecha()
+          this.followNum = 0;
           this.albumNum = 0;
         }
       }, error => {

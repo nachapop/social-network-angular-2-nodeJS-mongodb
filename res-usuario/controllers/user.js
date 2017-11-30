@@ -105,10 +105,7 @@ function saveUser(req, res) {
       if (user.name != "" && user.surname != "" && user.email != "") {
         //gudardar ususario
         user.save((err, userPost) => {
-          User.on('index', function(err) {
-
-            console.log('error de index')
-          })
+          User.on('index', function(err) {})
           if (err)
             res.status(500).send({
               message: 'Error en el servidor'

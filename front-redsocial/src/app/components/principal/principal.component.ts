@@ -35,66 +35,7 @@ export class PrincipalComponent implements OnInit {
     this.getNewFollowers()
 
   }
-  /*  getFriends() {
-      this._fs.getFriends(this.identity, this.token).subscribe(
-        response => {
-          this.follows = response
-          this.id_friend = []
-          console.log('yo', this.identity)
-          for (let follow of this.follows) {
-            this.id_friend.push(follow.friend._id)
-          }
-          this.getAlbumFollow();
-        }, error => {
 
-        })
-    }
-    albumNum: number = 0;
-    id_friend = []
-    getAlbumFollow() {
-      this._as.getAlbums(this.id_friend[this.albumNum], this.token).subscribe(
-        response => {
-          console.log(response)
-          this.albums = response.albums
-          console.log(this.albums)
-          if (this.albums.length > 0)
-            this.getImagesAlbum(this.albums[this.albumNum])
-          //      console.log(this.)
-        }, error => {
-
-        })
-    }
-
-    getImagesAlbum(album) {
-      console.log(album)
-      this._is.getImages(this.token, album._id).subscribe(
-        response => {
-          this.imagesAlbum = this.imagesAlbum.concat(response.images)
-          console.log(this.imagesAlbum)
-          //    this.imagesAlbum.sort(function(a, b) { return (a.last_nom > b.last_nom) ? 1 : ((b.last_nom > a.last_nom) ? -1 : 0); });
-
-          this.albumNum++
-          if (this.albumNum < this.albums.length) {
-            this.getImagesAlbum(this.albums[this.albumNum])
-          } else {
-            this.ordenarImagenesPorFecha()
-            this.albumNum = 0;
-          }
-        }, error => {
-
-        })
-    }
-    ordenarImagenesPorFecha() {
-      this.imagesAlbum.sort((a, b) => {
-        if (a.album.date < b.album.date)
-          return 1;
-        if (a.album.date > b.album.date)
-          return -1;
-        return 0;
-      })
-
-    }
-  */
   getFollowers() {
     this._fs.getFollowers(this.identity, this.token).subscribe(
       response => {

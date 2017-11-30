@@ -1,0 +1,3 @@
+[submodule "gitClone"]
+	path = gitClone
+	url = https://github.com/nachapop/social-network-angular-2-nodeJS-mongodb.git

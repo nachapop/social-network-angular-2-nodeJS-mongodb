@@ -44,7 +44,7 @@
       <div *ngIf="_as.albums.length == 0" class="alert alert-warning">
         <strong>Atención!</strong> Tu portal está vacío. Busca gente a la que seguir y enterate de lo que publica
       </div>
-      <div class="card mb-3 contenedor-img" *ngFor="let imagen of _is.imagesAlbum; let i = index">
+      <div class="card mb-3 contenedor-img animated fadeIn" *ngFor="let imagen of _is.imagesAlbum; let i = index">
         <div class="card-header">
           <div class="d-flex align-items-start">
             <img class="image-owner-foto" *ngIf="imagen.album.user.image != 'null'" src="{{url + 'get-image-user/'+ imagen.album.user.image}}" alt="">

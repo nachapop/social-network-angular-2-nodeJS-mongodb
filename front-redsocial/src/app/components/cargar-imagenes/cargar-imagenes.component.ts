@@ -61,18 +61,14 @@ export class CargarImagenesComponent {
   }
   cargarImagen(imagen: FileItem) {
     imagen.cargando = true;
-    //  this.archivoDB.title = imagen.nombreArchivo;
     this._is.addImage(this.archivoDB, this.token).subscribe(response => {
-      console.log(this.url + 'upload-image/' + response.imagen._id)
       this.makeFileRequest(this.url + 'upload-image/' + response.imagen._id, [], imagen.archivo)
         .then(result => {
           this.resultUpload = result
           this.imagenesCargadas++;
-          console.log(this.resultUpload)
           //  this.archivoDB.picture = this.resultUpload.filename
           this.archivoDB.picture = this.resultUpload.filename
 
-          //    console.log(imagen)
           imagen.cargando = false;
           imagen.completo = true;
           if (this.imagenesCargadas < this.archivos.length) {
