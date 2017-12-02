@@ -49,12 +49,10 @@ function getAlbum(req, res) {
 
 function getAlbums(req, res) {
   var albumUser = req.params.user;
-  console.log(albumUser)
   Album.find({
       'user': albumUser
     })
     .exec((err, albums) => {
-      console.log(albums)
       if (err)
         res.status(500).send({
           mensaje: 'error en la petición'
@@ -126,7 +124,6 @@ function updateAlbum(req, res) {
     title: req.body.title,
     description: req.body.description
   }
-  console.log(update);
   Album.findByIdAndUpdate(id, update, (err, album) => {
     if (err)
       res.status(500).send({

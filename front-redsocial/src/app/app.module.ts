@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
 //libraries
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
 //mport { Angular2ImageGalleryModule } from 'angular2-image-gallery';
@@ -18,15 +17,16 @@ import { FriendService } from './services/friend.service';
 import { AlbumService } from './services/album.service';
 import { ImageService } from './services/image.service';
 import { WebSocketService } from './services/web-socket.service';
+import { ChatService } from './services/chat.service';
 //Components
 import { EntradaComponent } from './components/entrada/entrada.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { CargarImagenesComponent } from './components/cargar-imagenes/cargar-imagenes.component';
-import { BuscarAmigosComponent } from './components/buscar-amigos/buscar-amigos.component';
 import { MiAlbumComponent } from './components/mi-album/mi-album.component';
-import { VerAlbumComponent } from './components/ver-album/ver-album.component'
+import { VerAlbumComponent } from './components/ver-album/ver-album.component';
+import { ChatComponent } from './components/chat/chat.component'
 
 @NgModule({
   declarations: [
@@ -36,10 +36,10 @@ import { VerAlbumComponent } from './components/ver-album/ver-album.component'
     NavbarComponent,
     UpdateUserComponent,
     CargarImagenesComponent,
-    BuscarAmigosComponent,
     MiAlbumComponent,
     NgDropFilesDirective,
-    VerAlbumComponent
+    VerAlbumComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +49,7 @@ import { VerAlbumComponent } from './components/ver-album/ver-album.component'
     //Angular2ImageGalleryModule,
     APP_ROUTING
   ],
-  providers: [UsuarioService, FriendService, AlbumService, ImageService, WebSocketService],
+  providers: [UsuarioService, FriendService, AlbumService, ImageService, WebSocketService, ChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

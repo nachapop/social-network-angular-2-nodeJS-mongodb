@@ -30,7 +30,6 @@ export class VerAlbumComponent implements OnInit {
   getImagenes() {
     this._is.getImages(this.token, this.album).subscribe(
       response => {
-        console.log(response)
         this.imagenes = response.images
 
 

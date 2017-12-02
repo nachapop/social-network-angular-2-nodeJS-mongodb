@@ -1,6 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
 import { FriendService } from '../../services/friend.service';
+import { WebSocketService } from '../../services/web-socket.service';
+
 import { IUsuario } from '../../interfaces/i-usuario';
 import { GLOBAL } from '../../services/global';
 import { AlbumService } from '../../services/album.service';
@@ -13,19 +15,21 @@ import { ImageService } from '../../services/image.service';
     '(document:click)': 'onClick($event)',
   },
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   amigosPosibles: IUsuario[] = []
-
+  connection;
   errorMessage: string;
   public identity;
   public token;
   url: string
   amigoText: string;
   inputSearch: boolean;
+  friend_id
   constructor(public _us: UsuarioService,
     public _fs: FriendService,
     private _as: AlbumService,
-    private _is: ImageService) {
+    private _is: ImageService,
+    private _ws: WebSocketService) {
     //  this.getAlluser()
     this.identity = this._us.getIdentity();
     this.token = this._us.getToken();
@@ -34,6 +38,13 @@ export class NavbarComponent implements OnInit {
   }
   @Output() identit = new EventEmitter();
   ngOnInit() {
+    this.connection = this._ws.getNewFollow().subscribe(message => {
+      console.log(message)
+    })
+  }
+
+  ngOnDestroy() {
+    this.connection.unsubscribe();
   }
   logout() {
     this._us.logout()
@@ -65,11 +76,11 @@ export class NavbarComponent implements OnInit {
   }
 
   postfollow(amigoPosible) {
+    this.friend_id = amigoPosible
     this._fs.postFriend(this.identity, amigoPosible, this.token).subscribe(response => {
       //  let user = response.user;
       this._fs.follows = response.folow;
       this.getFriends()
-
       //
     },
       error => {
@@ -77,6 +88,7 @@ export class NavbarComponent implements OnInit {
       })
   }
   deleteFollow(amigoPosible) {
+    this.friend_id = amigoPosible
     for (let follow of this._fs.follows) {
       if (follow.friend._id == amigoPosible._id) {
         this._fs.deleteFriends(follow, this.token).subscribe(response => {
@@ -144,6 +156,7 @@ export class NavbarComponent implements OnInit {
         if (this.albumNum < this._as.albums.length) {
           this.getImagesAlbum()
         } else {
+          this.connection = this._ws.sendFollow(this.friend_id);
           this.ordenarImagenesPorFecha()
           this.followNum = 0;
           this.albumNum = 0;
