@@ -23,7 +23,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let archivo of archivos">
-            <td><input type="text" placeholder="Título" name="title" [(ngModel)]="archivoDB.title"></td>
+            <td><input type="text" placeholder="Título" name="title" [(ngModel)]="archivo.title"></td>
             <td [ngClass]="{'text-green': archivo.estaSubiendo}">
               <strong>{{archivo.nombreArchivo}}</strong>
             </td>

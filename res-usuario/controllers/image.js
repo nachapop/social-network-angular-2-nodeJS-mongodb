@@ -7,6 +7,12 @@ var path = require('path');
 var fs = require('fs')
 
 
+function res500(res) {
+  res.status(500).send({
+    mensaje: 'error en la petición'
+  })
+}
+
 function getImage(req, res) {
   var imageId = req.params.id;
   Image.find({
@@ -21,9 +27,7 @@ function getImage(req, res) {
       }
     }).exec((err, images) => {
       if (err)
-        res.status(500).send({
-          err: 'Error con el servidor'
-        })
+        res500(res)
       else {
         if (!images) {
           res.status(404).send({
@@ -41,11 +45,11 @@ function getImage(req, res) {
 function getImages(req, res) {
   var idAlbum = req.params.album;
   if (!idAlbum) {
-    var find = Image.find({}).sort('title')
+    var find = Image.find({})
   } else {
     var find = Image.find({
       album: idAlbum
-    }).sort('-title')
+    })
   }
   find.populate({
     path: 'album',
@@ -56,9 +60,7 @@ function getImages(req, res) {
     }
   }).exec((err, images) => {
     if (err)
-      res.status(500).send({
-        err: 'Error con el servidor'
-      })
+      res500(res)
     else {
       if (!images) {
         res.status(404).send({
@@ -81,9 +83,7 @@ function saveImage(req, res) {
   image.album = params.album;
   image.save(image, (err, imageNueva) => {
     if (err)
-      res.status(500).send({
-        err: 'Error con el servidor'
-      })
+      res500(res)
     else {
       if (!imageNueva) {
         res.status(404).send({
@@ -104,9 +104,7 @@ function updateImage(req, res) {
   var update = req.body;
   Image.findByIdAndUpdate(imageId, update, (err, imageUpdate) => {
     if (err)
-      res.status(500).send({
-        err: 'Error con el servidor'
-      })
+      res500(res)
     else {
       if (!imageUpdate) {
         res.status(404).send({
@@ -127,9 +125,7 @@ function removeImage(req, res) {
 
   Image.findByIdAndRemove(imageId, (err, imageRemove) => {
     if (err)
-      res.status(500).send({
-        err: 'Error con el servidor'
-      })
+      res500(res)
     else {
       if (!imageRemove) {
         res.status(404).send({
@@ -155,9 +151,7 @@ function uploadImage(req, res) {
       picture: file_name
     }, (err, imageUpdate) => {
       if (err)
-        res.status(500).send({
-          err: 'Error con el servidor'
-        })
+        res500(res)
       else {
         if (!imageUpdate) {
           res.status(404).send({

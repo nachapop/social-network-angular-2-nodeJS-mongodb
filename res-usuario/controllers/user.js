@@ -11,13 +11,17 @@ function pruebas(req, res) {
   })
 }
 
+function res500(res) {
+  res.status(500).send({
+    mensaje: 'error en la petición'
+  })
+}
+
 function getUser(req, res) {
   var idUser = req.params.id;
   User.findById(idUser, (err, user) => {
     if (err)
-      res.status(500).send({
-        mensaje: 'error en la petición'
-      })
+      res500(res)
     else {
       if (user) {
         res.status(200).send({
@@ -52,9 +56,7 @@ function getUserByPartOfName(req, res) {
     },
     function(err, users) {
       if (err)
-        res.status(500).send({
-          message: 'Error en la petición'
-        })
+        res500(res)
       if (!users) {
         res.status(404).send({
           user: 'NO hay datos'
@@ -74,9 +76,7 @@ function getUsers(req, res) {
   var idUser = req.params.id;
   User.find({}, (err, users) => {
     if (err)
-      res.status(500).send({
-        mensaje: 'error en la petición'
-      })
+      res500(res)
     else {
       if (users) {
         res.status(200).send({
@@ -107,9 +107,7 @@ function saveUser(req, res) {
         user.save((err, userPost) => {
           User.on('index', function(err) {})
           if (err)
-            res.status(500).send({
-              message: 'Error en el servidor'
-            })
+            res500(res)
           else {
             if (!userPost) {
               res.status(404).send({
@@ -130,9 +128,7 @@ function saveUser(req, res) {
 
     })
   } else {
-    res.status(500).send({
-      menssage: 'Introduce la contraseña'
-    })
+    res500(res)
   }
 
 }
@@ -147,9 +143,7 @@ function loginUser(req, res) {
     email: email.toLowerCase()
   }, (err, user) => {
     if (err)
-      res.status(500).send({
-        message: 'Error en la petición'
-      })
+      res500(res)
     else {
       if (!user) {
         res.status(404).send({
@@ -158,9 +152,7 @@ function loginUser(req, res) {
       } else {
         bcrypt.compare(password, user.password, (err, check) => {
           if (err)
-            res.status(500).send({
-              message: 'Error en la petición 2'
-            })
+            res500(res)
           else {
             if (!check) {
               res.status(404).send({
@@ -191,9 +183,7 @@ function updateUser(req, res) {
 
   User.findByIdAndUpdate(userId, update, (err, userUpdated) => {
     if (err) {
-      res.status(500).send({
-        message: 'Error al actualizar el usuario'
-      })
+      res500(res)
     } else {
       if (!userUpdated) {
         res.status(404).send({
@@ -214,9 +204,7 @@ function removeUser(req, res) {
 
   User.findByIdAndRemove(userId, (err, userRemoved) => {
     if (err) {
-      res.status(500).send({
-        message: 'Error al actualizar el usuario'
-      })
+      res500(res)
     } else {
       if (!userRemoved) {
         res.status(404).send({
@@ -247,9 +235,7 @@ function uploadImage(req, res) {
         image: file_name
       }, (err, userUpdated) => {
         if (err) {
-          res.status(500).send({
-            message: 'Error al actualizar el usuario'
-          })
+          res500(res)
         } else {
           if (!userUpdated) {
             res.status(404).send({

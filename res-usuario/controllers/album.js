@@ -2,6 +2,11 @@
 var Album = require('../models/album');
 var User = require('../models/user')
 
+function res500(res) {
+  res.status(500).send({
+    mensaje: 'error en la petición'
+  })
+}
 
 function getAlbum(req, res) {
   var albumId = req.params._id;
@@ -12,9 +17,7 @@ function getAlbum(req, res) {
     .where('user').equals(albumUser)
     .exec((err, album) => {
       if (err)
-        res.status(500).send({
-          mensaje: 'error en la petición'
-        })
+        res500(res)
       else {
         if (!album) {
           res.status(404).send({
@@ -26,9 +29,7 @@ function getAlbum(req, res) {
             select: '-password'
           }, (err, album) => {
             if (err)
-              res.status(500).send({
-                err: 'Error con el servidor2'
-              })
+              res500(res)
             else {
               if (!album) {
                 res.status(404).send({
@@ -54,9 +55,7 @@ function getAlbums(req, res) {
     })
     .exec((err, albums) => {
       if (err)
-        res.status(500).send({
-          mensaje: 'error en la petición'
-        })
+        res500(res)
       else {
         if (!albums) {
           res.status(404).send({
@@ -69,9 +68,7 @@ function getAlbums(req, res) {
             select: '-password'
           }, (err, albums) => {
             if (err)
-              res.status(500).send({
-                err: 'Error con el servidor2'
-              })
+              res500(res)
             else {
               if (!albums) {
                 res.status(404).send({
@@ -99,9 +96,7 @@ function saveAlbum(req, res) {
   album.user = params.user;
   album.save((err, album) => {
     if (err)
-      res.status(500).send({
-        mensaje: 'error en la petición'
-      })
+      res500(res)
     else {
       if (album) {
         res.status(200).send({
@@ -126,9 +121,7 @@ function updateAlbum(req, res) {
   }
   Album.findByIdAndUpdate(id, update, (err, album) => {
     if (err)
-      res.status(500).send({
-        mensaje: 'error en la petición'
-      })
+      res500(res)
     else {
       if (album) {
         res.status(200).send({
@@ -147,7 +140,7 @@ function deleteAlbum(req, res) {
   var id = req.params.id;
   Album.findByIdAndRemove(id, (err, album) => {
     if (err)
-      throw error;
+      res500(res)
     else {
       if (album) {
         res.status(200).send({

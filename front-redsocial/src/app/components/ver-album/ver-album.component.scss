@@ -11,14 +11,14 @@
   width: 100%;
   height: auto;
 }
-@media (min-width: 600px) {
-  .card-columns {
-    column-count: 5;
-  }
-}
 
 .modal.and.carousel {
   position: fixed; // Needed because the carousel overrides the position property
+}
+
+.contenedor-imagen {
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .imagenes-album-carousel {
@@ -35,6 +35,11 @@
   height: 95%;
 }
 
+.user-image {
+  width: 40px;
+  border-radius: 50%;
+}
+
 .modal-dialog {}
 
 .modal-content {
@@ -45,4 +50,9 @@
   /* 100% = dialog height, 120px = header + footer */
   max-height: calc(100% - 60px);
   overflow-y: scroll;
+}
+@media (min-width: 600px) {
+  .card-columns {
+    column-count: 5;
+  }
 }

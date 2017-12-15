@@ -17,6 +17,7 @@ export class MiAlbumComponent {
   public albumNuevo: IAlbum;
   public albumCollection: IAlbum[];
   public images: IImage[][] = [];
+
   url: string;
   constructor(private router: Router, public _us: UsuarioService, public _als: AlbumService, public _is: ImageService) {
     this.identity = this._us.getIdentity();
@@ -43,7 +44,6 @@ export class MiAlbumComponent {
           this.getImagesAlbum(this.albumCollection[this.numeroAlbum])
         } else {
           this.numeroAlbum = 0;
-          console.log(this.images[0][0].picture)
         }
       }, error => {
         console.log(error)

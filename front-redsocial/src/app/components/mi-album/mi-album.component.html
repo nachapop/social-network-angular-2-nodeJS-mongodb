@@ -3,14 +3,10 @@
     <div class="col-md-8">
       <h2>Mi Colección</h2>
       <div class="d-flex flex-wrap m-2">
-
-        <div class=" contenedor-img " *ngFor="let album of albumCollection; let i = index" (click)="verAlbum(album)">
-
+        <div class=" contenedor-img p-1" *ngFor="let album of albumCollection; let i = index" (click)="verAlbum(album)">
           <img class="imagenes-album m-auto" src="{{url + 'get-image/' + images[i][0].picture}}">
           <h6>{{album.title}}</h6>
-
         </div>
-
       </div>
     </div>
     <div class="col-md-4">

@@ -1,9 +1,13 @@
 <div class="container my-3 ">
   <div class="d-flex flex-wrap m-2 ">
     <div class=" contenedor-img m-1">
+      <div class="options-album d-flex">
+        <button type="button" name="button" class="btn btn-success" (click)="volver()">Volver</button>
+        <button type="button" name="button" class="btn btn-danger ml-2" (click)="eliminarAlbum()">Eliminar</button>
+        <button type="button" name="button" class="btn btn-warning ml-2" (click)="actualizarAlbum()">Actualizar</button>
+      </div>
 
-
-      <div class="card-columns">
+      <div class="card-columns my-2">
 
         <div class="card" style="flex-grow: 2" *ngFor="let imagen of imagenes; let id= index">
           <img (click)='verModal(id)' data-toggle="modal" data-target="#myModal" class="img-fluid imagenes-album m-auto" src="{{url + 'get-image/' + imagen.picture}}" alt="{{url + 'get-image/' + imagen.picture}}">
@@ -26,13 +30,18 @@
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="container">
             <div class="row">
-              <div class="col-md-8">
-
+              <div class="col-md-8 contenedor-imagen">
+                <h5>{{imagenes[i].title}}</h5>
+                <img class="img-fluid imagenes-album-carousel" src="{{url + 'get-image/' + imagenes[i].picture}}" alt="{{url + 'get-image/' + imagenes[i].picture}}">
+                <button type="button" class="btn btn-danger my-1" (click)="eliminarImagen(imagenes[i])" name="button">Eliminar</button>
 
               </div>
               <div class="col-md-4">
-
-
+                <div class="d-flex align-items-center">
+                  <img class="user-image" *ngIf="imagenes[i].album.user.image != 'null'" src="{{url + 'get-image/' + + imagenes[i].album.user.image}}" alt="{{url + 'get-image-/' + imagenes[i].picture}}">
+                  <img class="user-image" *ngIf="imagenes[i].album.user.image == 'null'" src="http://wfarm1.dataknet.com/static/resources/icons/set104/6ff873a9.png" width='60'>
+                  <h6 ml-4>{{imagenes[i].album.user.name}} {{imagenes[i].album.user.surname}}</h6>
+                </div>
               </div>
               <a class="carousel-control-prev" href="#carouselExampleControls" (click)="moverCarousel(false)" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>

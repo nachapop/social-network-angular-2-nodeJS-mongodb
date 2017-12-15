@@ -17,7 +17,6 @@ import { FriendService } from './services/friend.service';
 import { AlbumService } from './services/album.service';
 import { ImageService } from './services/image.service';
 import { WebSocketService } from './services/web-socket.service';
-import { ChatService } from './services/chat.service';
 //Components
 import { EntradaComponent } from './components/entrada/entrada.component';
 import { PrincipalComponent } from './components/principal/principal.component';
@@ -26,7 +25,7 @@ import { UpdateUserComponent } from './components/update-user/update-user.compon
 import { CargarImagenesComponent } from './components/cargar-imagenes/cargar-imagenes.component';
 import { MiAlbumComponent } from './components/mi-album/mi-album.component';
 import { VerAlbumComponent } from './components/ver-album/ver-album.component';
-import { ChatComponent } from './components/chat/chat.component'
+
 
 @NgModule({
   declarations: [
@@ -38,8 +37,7 @@ import { ChatComponent } from './components/chat/chat.component'
     CargarImagenesComponent,
     MiAlbumComponent,
     NgDropFilesDirective,
-    VerAlbumComponent,
-    ChatComponent
+    VerAlbumComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +47,7 @@ import { ChatComponent } from './components/chat/chat.component'
     //Angular2ImageGalleryModule,
     APP_ROUTING
   ],
-  providers: [UsuarioService, FriendService, AlbumService, ImageService, WebSocketService, ChatService],
+  providers: [UsuarioService, FriendService, AlbumService, ImageService, WebSocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

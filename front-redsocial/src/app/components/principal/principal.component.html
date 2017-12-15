@@ -28,7 +28,7 @@
           <img *ngIf="user.image != 'null'" class="img-circle img-fluid" src="{{url + 'get-image-user/' + user.image}}" width='60' alt="no image">
           <img *ngIf="user.image == 'null'" class="img-circle img-fluid" src="http://wfarm1.dataknet.com/static/resources/icons/set104/6ff873a9.png" width='60'>
 
-          <h6>{{user.name}}</h6>
+          <h6>{{user.name}} {{user.sername}}</h6>
         </div>
       </div>
       <div class="row">

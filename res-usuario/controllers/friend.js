@@ -5,6 +5,12 @@ var mongoosePaginate = require('mongoose-pagination')
 var User = require('../models/user');
 var Friend = require('../models/friend');
 
+function res500(res) {
+  res.status(500).send({
+    mensaje: 'error en la petición'
+  })
+}
+
 function postFollow(req, res) {
   var friend = new Friend();
   var params = req.body;
@@ -12,11 +18,8 @@ function postFollow(req, res) {
   friend.friend = params.friend;
   friend.visto = false;
   friend.save((err, follow) => {
-
     if (err)
-      res.status(500).send({
-        err: 'Error con el servidor'
-      })
+      res500(res)
     else {
       if (!follow) {
         res.status(404).send({
@@ -43,9 +46,7 @@ function getAmistades(req, res) {
     select: '-password'
   }).exec((err, friend) => {
     if (err)
-      res.status(500).send({
-        err: 'Error con el servidor'
-      })
+      res500(res)
     else {
       if (!friend) {
         res.status(404).send({
@@ -69,9 +70,7 @@ function getNewFollows(req, res) {
     .exec((err, follower) => {
 
       if (err)
-        res.status(500).send({
-          err: 'Error con el servidor'
-        })
+        res500(res)
       else {
         if (!follower) {
           res.status(404).send({
@@ -83,9 +82,7 @@ function getNewFollows(req, res) {
             select: '-password'
           }, (err, followers) => {
             if (err)
-              res.status(500).send({
-                err: 'Error con el servidor2'
-              })
+              res500(res)
             else {
               if (!followers) {
                 res.status(404).send({
@@ -113,7 +110,7 @@ function updateFollow(req, res) {
   }
   Friend.findByIdAndUpdate(idFollow, update, (err, amistadActualizada) => {
     if (err)
-      throw error;
+      res500(res)
     else {
       if (amistadActualizada) {
         res.status(200).send({
@@ -137,9 +134,7 @@ function getFollowers(req, res) {
     .exec((err, follower) => {
 
       if (err)
-        res.status(500).send({
-          err: 'Error con el servidor'
-        })
+        res500(res)
       else {
         if (!follower) {
           res.status(404).send({
@@ -151,9 +146,7 @@ function getFollowers(req, res) {
             select: '-password'
           }, (err, follower) => {
             if (err)
-              res.status(500).send({
-                err: 'Error con el servidor2'
-              })
+              res500(res)
             else {
               if (!follower) {
                 res.status(404).send({
@@ -176,9 +169,7 @@ function deleteFollow(req, res) {
 
   Friend.findByIdAndRemove(userFriend, (err, friendRemoved) => {
     if (err) {
-      res.status(500).send({
-        message: 'Error al actualizar el usuario'
-      })
+      res500(res)
     } else {
       if (!friendRemoved) {
         res.status(404).send({
@@ -202,9 +193,7 @@ function pedirAmistadPost(req, res) {
   friend.user = params.user;
   friend.save((err, nuevoAmigo) => {
     if (err)
-      res.status(500).send({
-        message: 'error en el servidor'
-      })
+      res500(res)
     else {
       if (!nuevoAmigo) {
         res.status(404).send({
@@ -218,9 +207,7 @@ function pedirAmistadPost(req, res) {
         friend.user = params.friend;
         friend.save((err, nuevoAmigo2) => {
           if (err)
-            res.status(500).send({
-              message: 'error en el servidor'
-            })
+            res500(res)
           else {
             if (!nuevoAmigo2) {
               res.status(404).send({
@@ -247,9 +234,7 @@ function deleteFriendShip(req, res) {
 
   Friend.findByIdAndRemove(frienshipId, (err, friendshipRemove) => {
     if (err)
-      res.status(500).send({
-        err: 'Error con el servidor'
-      })
+      res500(res)
     else {
       if (!friendshipRemove) {
         res.status(404).send({

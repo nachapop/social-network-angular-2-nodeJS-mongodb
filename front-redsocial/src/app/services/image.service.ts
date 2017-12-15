@@ -3,11 +3,13 @@ import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable'
 import { IAlbum } from '../interfaces/i-album';
+import { IImage } from '../interfaces/i-image';
 import { GLOBAL } from './global';
 @Injectable()
 export class ImageService {
   url: string;
   imagesAlbum: any[] = []
+  iamgeMainFriend: IImage[] = [];
   constructor(private _http: Http) {
     this.url = GLOBAL.url
   }

@@ -46,7 +46,7 @@ export class CargarImagenesComponent {
 
   limpiarArchivos() {
     this.archivos = [];
-    this.archivoDB = this.archivoDB = {
+    this.archivoDB = {
       title: "",
       picture: "",
       album: this.idAlbum
@@ -61,6 +61,7 @@ export class CargarImagenesComponent {
   }
   cargarImagen(imagen: FileItem) {
     imagen.cargando = true;
+    this.archivoDB.title = imagen.title;
     this._is.addImage(this.archivoDB, this.token).subscribe(response => {
       this.makeFileRequest(this.url + 'upload-image/' + response.imagen._id, [], imagen.archivo)
         .then(result => {

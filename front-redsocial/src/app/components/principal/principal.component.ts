@@ -3,9 +3,11 @@ import { FriendService } from '../../services/friend.service';
 import { UsuarioService } from '../../services/usuario.service';
 import { ActivatedRoute } from '@angular/router';
 import { IUsuario } from '../../interfaces/i-usuario';
+import { IImage } from '../../interfaces/i-image';
 import { GLOBAL } from '../../services/global';
 import { AlbumService } from '../../services/album.service';
 import { ImageService } from '../../services/image.service';
+import { WebSocketService } from '../../services/web-socket.service';
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.component.html',
@@ -20,12 +22,15 @@ export class PrincipalComponent implements OnInit {
   public followers: IUsuario[] = []
   public newFollowers: IUsuario[] = []
   public albums: any = [];
+  public imageMain: IImage[] = []
   public imagesAlbum: any = []
+  public connection;
   constructor(private route: ActivatedRoute,
     public _fs: FriendService,
     public _us: UsuarioService,
     private _as: AlbumService,
-    private _is: ImageService) {
+    private _is: ImageService,
+    private _ws: WebSocketService) {
     this.identity = this._us.getIdentity();
     this.token = this._us.getToken();
     this.user = this.identity;
@@ -73,6 +78,12 @@ export class PrincipalComponent implements OnInit {
       })
   }
   ngOnInit() {
+    this.connection = this._ws.getNameSpace(this.identity._id).subscribe(message => {
+      this.getFollowers();
+      this.getNewFollowers();
+    })
   }
+  verModal(i) {
 
+  }
 }

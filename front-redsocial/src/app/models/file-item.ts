@@ -6,6 +6,7 @@ export class FileItem {
   public cargando: boolean = false;
   public completo: boolean = false;
   public error: boolean = false;
+  public title: string;
   constructor(archivo: File) {
     this.archivo = archivo;
     this.nombreArchivo = archivo.name;

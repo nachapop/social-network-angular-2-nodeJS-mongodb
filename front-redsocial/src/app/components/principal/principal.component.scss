@@ -103,3 +103,8 @@ span {
   cursor: pointer;
   color: rgba(178,212,101, 1);
 }
+@media (max-width: 990px) {
+  .contenedor-img {
+    width: 100%;
+  }
+}
